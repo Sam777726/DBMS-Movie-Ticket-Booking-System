@@ -39,9 +39,9 @@ class Movie:
 
 		def adddata():
 			if(len(Movie_ID.get())!=0):
-				MiniProject_Backend.AddMovieRec(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Cast.get(),Budget.get(),Duration.get(),Rating.get())
+				MiniProject_Backend.AddMovieRec(int(Movie_ID.get()),Movie_Name.get(),Release_Date.get(),Director.get(),float(Budget.get()),float(Duration.get()),float(Rating.get()))
 				MovieList.delete(0,END)
-				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Cast.get(),Budget.get(),Duration.get(),Rating.get()))
+				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()))
 
 		def disdata():
 			MovieList.delete(0,END)
@@ -54,21 +54,21 @@ class Movie:
 			sd=MovieList.get(searchmovie)
 
 			self.txtMovie_ID.delete(0,END)
-			self.txtMovie_ID.insert(END,sd[1])
+			self.txtMovie_ID.insert(END,sd[0])
 			self.txtMovie_Name.delete(0,END)
-			self.txtMovie_Name.insert(END,sd[2])
+			self.txtMovie_Name.insert(END,sd[1])
 			self.txtRelease_Date.delete(0,END)
-			self.txtRelease_Date.insert(END,sd[3])
+			self.txtRelease_Date.insert(END,sd[2])
 			self.txtDirector.delete(0,END)
-			self.txtDirector.insert(END,sd[4])
+			self.txtDirector.insert(END,sd[3])
 			self.txtCast.delete(0,END)
-			self.txtCast.insert(END,sd[5])
+			self.txtCast.insert(END,sd[4])
 			self.txtBudget.delete(0,END)
-			self.txtBudget.insert(END,sd[6])
+			self.txtBudget.insert(END,sd[5])
 			self.txtDuration.delete(0,END)
-			self.txtDuration.insert(END,sd[7])
+			self.txtDuration.insert(END,sd[6])
 			self.txtRating.delete(0,END)
-			self.txtRating.insert(END,sd[8])
+			self.txtRating.insert(END,sd[7])
 
 		def deldata():
 			if(len(Movie_ID.get())!=0):
