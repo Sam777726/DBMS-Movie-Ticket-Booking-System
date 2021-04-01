@@ -33,7 +33,7 @@ def DeleteMovieRec(id):
                                             password='admin',
                                             charset='utf8')
     cur = connection.cursor()
-    cur.execute("DELETE FROM movie WHERE id=?", (id,))
+    cur.execute("DELETE FROM movie WHERE id=%d", id)
     connection.commit()
     connection.close()  
 
@@ -44,7 +44,7 @@ def SearchMovieData(M_ID="",M_NAME="",Release_Date="",Director="",Cast="",Budget
                                             password='admin',
                                             charset='utf8')
     cur = connection.cursor()
-    cur.execute("SELECT * FROM movie WHERE M_ID=? OR M_NAME=? OR Release_Date=? OR Director=? OR Cast=? OR Budget=? OR Duration=? OR Rating=?",(M_ID,M_NAME,Release_Date,Director,Cast,Budget,Duration,Rating))
+    cur.execute("SELECT * FROM movie WHERE M_ID=? OR M_NAME=? OR Release_Date=? OR Director=? OR Budget=? OR Duration=? OR Rating=?",(M_ID,M_NAME,Release_Date,Director,Budget,Duration,Rating))
     rows=cur.fetchall()
     connection.close()    
     return rows
