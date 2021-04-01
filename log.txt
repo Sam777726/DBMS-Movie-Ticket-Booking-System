@@ -1,0 +1,33 @@
+mysql> create database project;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use project
+Database changed
+
+mysql> create table movie(
+    -> DURATION FLOAT(2,1),
+    -> M_NAME CHAR(20),
+    -> RELEASE_DATE DATE,
+    -> DIRECTOR CHAR(20),
+    -> M_ID INT,
+    -> RATING FLOAT(2,1),
+    -> BUDGET_IN_CR FLOAT(4,2),
+    -> PRIMARY KEY (M_ID)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESC MOVIE;
++--------------+------------+------+-----+---------+-------+
+| Field        | Type       | Null | Key | Default | Extra |
++--------------+------------+------+-----+---------+-------+
+| DURATION     | float(2,1) | YES  |     | NULL    |       |
+| M_NAME       | char(20)   | YES  |     | NULL    |       |
+| RELEASE_DATE | date       | YES  |     | NULL    |       |
+| DIRECTOR     | char(20)   | YES  |     | NULL    |       |
+| M_ID         | int(11)    | NO   | PRI | 0       |       |
+| RATING       | float(2,1) | YES  |     | NULL    |       |
+| BUDGET_IN_CR | float(4,2) | YES  |     | NULL    |       |
++--------------+------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql>
