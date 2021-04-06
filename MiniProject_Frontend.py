@@ -8,20 +8,20 @@ class Movie:
 	def __init__(self, root):
 		self.root=root
 		self.root.title("Online Movie Ticket Booking System")
-		self.root.geometry("1350x750+0+0")
+		self.root.geometry("1500x750+0+0")
 		self.root.config(bg="black")
 
 		Movie_Name=StringVar()
-		Movie_ID=StringVar()
+		Movie_ID=IntVar()
 		Release_Date=StringVar()
 		Director=StringVar()
-		Budget=StringVar()
-		Duration=StringVar()
-		Rating=StringVar()
+		Budget=DoubleVar()
+		Duration=DoubleVar()
+		Rating=DoubleVar()
 
 		#Fuctions
 		def iExit():
-			iExit=tkinter.messagebox.askyesno("Online Movie Ticket Booking System", "Are you sure???")
+			iExit=tkinter.messagebox.askyesno("Online Movie Ticket Booking System", "Are you sure?")
 			if iExit>0:
 				root.destroy()
 			return
@@ -52,7 +52,7 @@ class Movie:
 			sd=MovieList.get(searchmovie)
 
 			self.txtMovie_ID.delete(0,END)
-			self.txtMovie_ID.insert(END,sd[0])
+			self.txtMovie_ID.insert(END,sd[4])
 			self.txtMovie_Name.delete(0,END)
 			self.txtMovie_Name.insert(END,sd[1])
 			self.txtRelease_Date.delete(0,END)
@@ -60,15 +60,16 @@ class Movie:
 			self.txtDirector.delete(0,END)
 			self.txtDirector.insert(END,sd[3])
 			self.txtBudget.delete(0,END)
-			self.txtBudget.insert(END,sd[5])
+			self.txtBudget.insert(END,sd[6])
 			self.txtDuration.delete(0,END)
-			self.txtDuration.insert(END,sd[6])
+			self.txtDuration.insert(END,sd[0])
 			self.txtRating.delete(0,END)
-			self.txtRating.insert(END,sd[7])
+			self.txtRating.insert(END,sd[5])
+			print(sd)
 
 		def deldata():
 			if(len(Movie_ID.get())!=0):
-				MiniProject_Backend.DeleteMovieRec(sd[0])
+				MiniProject_Backend.DeleteMovieRec(int(sd[4]))
 				clcdata()
 				disdata()
 
@@ -76,6 +77,7 @@ class Movie:
 			MovieList.delete(0,END)
 			for row in MiniProject_Backend.SearchMovieData(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()):
 				MovieList.insert(END, row, str(""))
+			#print(Budget.get())
 
 		def updata():
 			if(len(Movie_ID.get())!=0):
