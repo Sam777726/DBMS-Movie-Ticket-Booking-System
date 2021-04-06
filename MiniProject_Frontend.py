@@ -15,7 +15,6 @@ class Movie:
 		Movie_ID=StringVar()
 		Release_Date=StringVar()
 		Director=StringVar()
-		Cast=StringVar()
 		Budget=StringVar()
 		Duration=StringVar()
 		Rating=StringVar()
@@ -32,7 +31,6 @@ class Movie:
 			self.txtMovie_Name.delete(0,END)
 			self.txtRelease_Date.delete(0,END)
 			self.txtDirector.delete(0,END)
-			self.txtCast.delete(0,END)
 			self.txtBudget.delete(0,END)
 			self.txtRating.delete(0,END)
 			self.txtDuration.delete(0,END)
@@ -61,8 +59,6 @@ class Movie:
 			self.txtRelease_Date.insert(END,sd[2])
 			self.txtDirector.delete(0,END)
 			self.txtDirector.insert(END,sd[3])
-			self.txtCast.delete(0,END)
-			self.txtCast.insert(END,sd[4])
 			self.txtBudget.delete(0,END)
 			self.txtBudget.insert(END,sd[5])
 			self.txtDuration.delete(0,END)
@@ -78,16 +74,16 @@ class Movie:
 
 		def searchdb():
 			MovieList.delete(0,END)
-			for row in MiniProject_Backend.SearchMovieData(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Cast.get(),Budget.get(),Duration.get(),Rating.get()):
+			for row in MiniProject_Backend.SearchMovieData(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()):
 				MovieList.insert(END, row, str(""))
 
 		def updata():
 			if(len(Movie_ID.get())!=0):
 				MiniProject_Backend.DeleteMovieRec(sd[0])
 			if(len(Movie_ID.get())!=0):
-				MiniProject_Backend.AddMovieRec(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Cast.get(),Budget.get(),Duration.get(),Rating.get())
+				MiniProject_Backend.AddMovieRec(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get())
 				MovieList.delete(0,END)
-				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Cast.get(),Budget.get(),Duration.get(),Rating.get()))
+				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()))
 
 		#Frames
 		MainFrame=Frame(self.root, bg="black")
@@ -132,11 +128,6 @@ class Movie:
 		self.lblDirector.grid(row=3, column=0, sticky=W) 
 		self.txtDirector=Entry(DFrameL, font=('Arial', 18, 'bold'), textvariable=Director, width=39, bg="black", fg="white")
 		self.txtDirector.grid(row=3, column=1)
-
-		self.lblCast=Label(DFrameL, font=('Arial', 18, 'bold'), text="Cast:", padx=2, pady=2, bg="black", fg="orange")
-		self.lblCast.grid(row=4, column=0, sticky=W) 
-		self.txtCast=Entry(DFrameL, font=('Arial', 18, 'bold'), textvariable=Cast, width=39, bg="black", fg="white")
-		self.txtCast.grid(row=4, column=1)
 
 		self.lblBudget=Label(DFrameL, font=('Arial', 18, 'bold'), text="Budget (Crores INR):", padx=2, pady=2, bg="black", fg="orange")
 		self.lblBudget.grid(row=5, column=0, sticky=W) 
