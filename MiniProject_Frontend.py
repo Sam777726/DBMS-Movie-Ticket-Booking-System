@@ -12,12 +12,14 @@ class Movie:
 		self.root.config(bg="black")
 
 		Movie_Name=StringVar()
-		Movie_ID=IntVar()
+		Movie_ID=StringVar()
 		Release_Date=StringVar()
 		Director=StringVar()
-		Budget=DoubleVar()
-		Duration=DoubleVar()
-		Rating=DoubleVar()
+		Budget=StringVar()
+		Duration=StringVar()
+		Rating=StringVar()
+
+		
 
 		#Fuctions
 		def iExit():
@@ -40,6 +42,8 @@ class Movie:
 				MiniProject_Backend.AddMovieRec(int(Movie_ID.get()),Movie_Name.get(),Release_Date.get(),Director.get(),float(Budget.get()),float(Duration.get()),float(Rating.get()))
 				MovieList.delete(0,END)
 				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()))
+				tkinter.messagebox.showinfo("NOTICE","Data added Successfully")  
+
 
 		def disdata():
 			MovieList.delete(0,END)
@@ -72,20 +76,21 @@ class Movie:
 				MiniProject_Backend.DeleteMovieRec(int(sd[4]))
 				clcdata()
 				disdata()
+				tkinter.messagebox.showinfo("NOTICE","Record Deleted")
 
 		def searchdb():
 			MovieList.delete(0,END)
-			for row in MiniProject_Backend.SearchMovieData(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()):
+			for row in MiniProject_Backend.SearchMovieData(Movie_ID.get()):
 				MovieList.insert(END, row, str(""))
-			#print(Budget.get())
 
 		def updata():
 			if(len(Movie_ID.get())!=0):
-				MiniProject_Backend.DeleteMovieRec(sd[0])
+				MiniProject_Backend.DeleteMovieRec(int(sd[4]))
 			if(len(Movie_ID.get())!=0):
-				MiniProject_Backend.AddMovieRec(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get())
+				MiniProject_Backend.AddMovieRec(int(Movie_ID.get()),Movie_Name.get(),Release_Date.get(),Director.get(),float(Budget.get()),float(Duration.get()),float(Rating.get()))
 				MovieList.delete(0,END)
 				MovieList.insert(END,(Movie_ID.get(),Movie_Name.get(),Release_Date.get(),Director.get(),Budget.get(),Duration.get(),Rating.get()))
+				tkinter.messagebox.showinfo("NOTICE","Data updated Successfully")
 
 		#Frames
 		MainFrame=Frame(self.root, bg="black")
@@ -94,7 +99,7 @@ class Movie:
 		TFrame=Frame(MainFrame, bd=5, padx=54, pady=8, bg="black", relief=RIDGE)
 		TFrame.pack(side=TOP)
 
-		self.TFrame=Label(TFrame, font=('Arial', 51, 'bold'), text="ONLINE MOVIE TICKET BOOKING SYSTEM", bg="black", fg="orange")
+		self.TFrame=Label(TFrame, font=('Arial', 51, 'bold'), text="ONLINE MOVIE TICKET BOOKING SYSTEM", bg="black", fg="green")
 		self.TFrame.grid() 
 
 		BFrame=Frame(MainFrame, bd=2, width=1350, height=70, padx=18, pady=10, bg="black", relief=RIDGE)
@@ -156,25 +161,25 @@ class Movie:
 		sb.config(command=MovieList.yview)
 
 		#Buttons
-		self.btnadd=Button(BFrame, text="Add New", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=adddata)
+		self.btnadd=Button(BFrame, text="Add New", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green",fg="white", command=adddata)
 		self.btnadd.grid(row=0, column=0)
 
-		self.btndis=Button(BFrame, text="Display", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=disdata)
+		self.btndis=Button(BFrame, text="Display", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green",fg="white", command=disdata)
 		self.btndis.grid(row=0, column=1)
 
-		self.btnclc=Button(BFrame, text="Clear", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=clcdata)
+		self.btnclc=Button(BFrame, text="Clear", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green",fg="white", command=clcdata)
 		self.btnclc.grid(row=0, column=2)
 
-		self.btnse=Button(BFrame, text="Search", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=searchdb)
+		self.btnse=Button(BFrame, text="Search", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green", fg="white",command=searchdb)
 		self.btnse.grid(row=0, column=3)
 
-		self.btndel=Button(BFrame, text="Delete", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=deldata)
+		self.btndel=Button(BFrame, text="Delete", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green",fg="white", command=deldata)
 		self.btndel.grid(row=0, column=4)
 
-		self.btnup=Button(BFrame, text="Update", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=updata)
+		self.btnup=Button(BFrame, text="Update", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green",fg="white", command=updata)
 		self.btnup.grid(row=0, column=5)
 
-		self.btnx=Button(BFrame, text="Exit", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="orange", command=iExit)
+		self.btnx=Button(BFrame, text="Exit", font=('Arial', 20, 'bold'), width=10, height=1, bd=4, bg="green", fg="white",command=iExit)
 		self.btnx.grid(row=0, column=6)
 
 
